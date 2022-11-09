@@ -1,0 +1,52 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+}
+
+.header-nav {
+    height: 80px;
+}
+
+.header-actions {
+    display: flex;
+}
+
+.header-actions li {
+    padding-left: 32px;
+    position: relative;
+}
+
+.header-actions li:hover {
+    cursor: pointer;
+}
+
+.header-actions__upside {
+    position: absolute;
+    bottom: 3px;
+    right: -15px;
+}
+
+.header-nav {
+    max-width: 234px;
+    display: flex;
+    font-size: 16px;
+}
+
+.header-nav li {
+    padding: 28px 16px 32px 16px;
+    transition: all 0.2s ease;
+}
+
+.header-nav li:hover {
+    color: #5ece7b;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #5ece7b;
+    cursor: pointer;
+}
