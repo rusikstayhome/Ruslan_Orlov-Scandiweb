@@ -1,9 +1,11 @@
 import React from 'react';
 
-import Header from '../../components/Header/Header';
-import Tabs from '../../components/Tabs/Tabs';
+import Card from '../../components/Card/Card';
 
-import axios from 'axios'
+import {getAllProducts} from '../../GraphQL/Queries'
+import { Query } from '@apollo/client/react/components';
+import './Home.css'
+
 
 class App extends React.Component {
   constructor() {
@@ -13,31 +15,35 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
-    axios.post('http://localhost:4000/', {
-      query: `
-  query {
-    categories {
-      name
-    }
-  }
-  `
-    }).then(res => {
-      const categories = res.data.data.categories;
-      this.setState({ categories })
-    })
-  }
-
   render() {
     return (
       <div className="container" >
-        <Header />
         <div className='tabs-container'>
-          {this.state.categories.map((obj, i) => (
-            <Tabs name={obj} key={i} />
-          ))}
+         <div className='tabs'>All</div>
+         <div className='tabs'>Clothes</div>
+         <div className='tabs'>Tech</div>
         </div>
+        <Query query={getAllProducts} >
+          {({ loading, error, data }) => {
+            console.log(data)
+          if (loading) return <p>Loading…</p>;
+          if (error) return <p>Error :(</p>;
+          return data.category.products?.map(({ name, prices, inStock, gallery }) => (
+            <Card 
+            name={name}
+            prices={prices}
+            inStock={inStock}
+            gallery={gallery}
+            />
+
+            // <div key={name}>
+            //   <p>{`${name}`}</p>
+            // </div>
+            ));  
+          }}
+        </Query>
       </div>
+      
     )
   }
 }
