@@ -31,3 +31,12 @@ export const getCurrencies = gql`
     }
 `
 
+export const GET_ONE_PRODUCT = gql`
+query GET_ONE_PRODUCT($id: String!) {
+    product(id: $id) {
+      name,
+      id
+    }
+}
+`
+
