@@ -2,49 +2,74 @@ import React from 'react';
 
 import Card from '../../components/Card/Card';
 
-import {getAllProducts} from '../../GraphQL/Queries'
+import { getAllProducts } from '../../GraphQL/Queries';
+import { Link } from 'react-router-dom';
 import { Query } from '@apollo/client/react/components';
-import './Home.css'
-
+import './Home.css';
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      categories: [],
-    }
+      tabValue: 'all',
+    };
   }
 
-  render() {
-    return (
-      <div className="container" >
-        <div className='tabs-container'>
-         <div className='tabs'>All</div>
-         <div className='tabs'>Clothes</div>
-         <div className='tabs'>Tech</div>
-        </div>
-        <Query query={getAllProducts} >
-          {({ loading, error, data }) => {
-            console.log(data)
-          if (loading) return <p>Loading…</p>;
-          if (error) return <p>Error :(</p>;
-          return data.category.products?.map(({ name, prices, inStock, gallery }) => (
-            <Card 
-            name={name}
-            prices={prices}
-            inStock={inStock}
-            gallery={gallery}
-            />
+  setTabValueAll = () => {
+    this.setState({
+      tabValue: 'all',
+    });
+  };
+  setTabValueClothes = () => {
+    this.setState({
+      tabValue: 'clothes',
+    });
+  };
+  setTabValueTech = () => {
+    this.setState({
+      tabValue: 'tech',
+    });
+  };
 
-            // <div key={name}>
-            //   <p>{`${name}`}</p>
-            // </div>
-            ));  
-          }}
-        </Query>
+  render() {
+    let category = this.state.tabValue;
+    return (
+      <div className="container">
+        <div className="tabs-container">
+          <div
+            className={`tabs ${this.state.tabValue === 'all' ? 'tab-active' : ''}`}
+            onClick={this.setTabValueAll}>
+            All
+          </div>
+          <div
+            className={`tabs ${this.state.tabValue === 'clothes' ? 'tab-active' : ''}`}
+            onClick={this.setTabValueClothes}>
+            Clothes
+          </div>
+          <div
+            className={`tabs ${this.state.tabValue === 'tech' ? 'tab-active' : ''}`}
+            onClick={this.setTabValueTech}>
+            Tech
+          </div>
+        </div>
+        <div className="cards-container">
+          <Query query={getAllProducts}>
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading…</p>;
+              if (error) return <p>Error :(</p>;
+              return data.category.products
+                .filter((obj) => (category === 'all' ? obj : obj.category === category))
+                .slice(0, 6)
+                .map(({ name, prices, inStock, gallery, id }) => (
+                  <Link to={`/product/${id}`}>
+                    <Card name={name} prices={prices} inStock={inStock} gallery={gallery} />
+                  </Link>
+                ));
+            }}
+          </Query>
+        </div>
       </div>
-      
-    )
+    );
   }
 }
 

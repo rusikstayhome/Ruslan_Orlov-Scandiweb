@@ -9,6 +9,7 @@ query getAllProducts {
         name,
         inStock,
         gallery,
+        category,
         prices {
             currency {
                 label,
@@ -20,3 +21,13 @@ query getAllProducts {
    }
 }
 `
+
+export const getCurrencies = gql`
+    query getCurrencies {
+        currencies {
+        label,
+        symbol
+        }
+    }
+`
+

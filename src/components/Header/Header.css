@@ -19,7 +19,12 @@ header {
 }
 
 .header-actions li {
-    padding-left: 32px;
+    position: relative;
+}
+
+.header-actions li:first-child {
+    padding-left: 0;
+    padding-right: 32px;
     position: relative;
 }
 
@@ -30,7 +35,13 @@ header {
 .header-actions__upside {
     position: absolute;
     bottom: 3px;
-    right: -15px;
+    right: 15px;
+}
+
+.header-actions__downside {
+    position: absolute;
+    bottom: 3px;
+    right: 15px;
 }
 
 .header-nav {
@@ -49,4 +60,10 @@ header {
     padding-bottom: 32px;
     border-bottom: 1px solid #5ece7b;
     cursor: pointer;
+}
+
+.currencies-overlay {
+    position: absolute;
+    right: -23px;
+    top: 55px;
 }

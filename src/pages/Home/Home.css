@@ -6,11 +6,25 @@
     text-transform: capitalize;
     line-height: 160%;
     color: #1d1f22;
+    opacity: 0.6;
+    transition: all 0.1s linear;
 }
 
 .tabs:hover {
-    opacity: 0.6;
+    opacity: 1;
     /* border-bottom: 2px solid hsla(216, 8%, 12%, 0.6);
     margin-bottom: 80px; */
     cursor: pointer;
+}
+
+.tab-active {
+    opacity: 1;
+}
+
+.cards-container {
+    margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 40px;
+    grid-row-gap: 100px;
 }

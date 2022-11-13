@@ -1,0 +1,59 @@
+.card {
+    margin-right: 40px;
+    padding: 16px;
+    position: relative;
+}
+
+.card:hover {
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+    cursor: pointer;
+}
+
+.card-img {
+    width: 350px;
+    height: 330px;
+    margin-bottom: 24px;
+}
+
+.card-img img {
+    width: 350px;
+    height: 330px;
+    object-fit: cover;
+}
+
+.card p {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.card p span {
+    font-weight: 500;
+}
+
+.cart-img {
+    position: absolute;
+    bottom: 43px;
+    right: 31px;
+    transition: all 0.2s ease;
+}
+
+.cart-img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.out-of-stock {
+    opacity: 0.6;
+}
+
+.out-of-stock:after {
+    content: "OUT OF STOCK";
+    position: absolute;
+    top: 146px;
+    left: 90px;
+    font-size: 24px;
+}
