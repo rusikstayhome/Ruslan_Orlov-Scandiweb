@@ -52,9 +52,16 @@ query GET_ONE_PRODUCT($id: String!) {
             label,
             symbol
             }
+            amount
         }
         brand
     }
 }
 `
+
+export const GET_CURRENCY = gql`
+query getDarkMode {
+  currency @client
+}
+`;
 

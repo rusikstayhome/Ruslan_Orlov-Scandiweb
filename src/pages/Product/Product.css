@@ -1,5 +1,6 @@
 .product-page {
     display: flex;
+    margin-bottom: 100px;
 }
 
 .product-img {
@@ -51,4 +52,31 @@
 
 .product-attributes {
     margin-top: 43px;
+}
+
+.product-price {
+    margin-top: 36px;
+}
+
+.product-price h2 {
+    margin: 10px 0 20px 0;
+}
+
+.product-addButton {
+    padding: 16px 94px;
+    margin: 20px 0 40px 0;
+    font-size: 16px;
+    color: #fff;
+    background-color: #5ece7b;
+    border: none;
+}
+
+.product-addButton:hover {
+    cursor: pointer;
+}
+
+.product-description {
+    font-size: 16px;
+    font-family: "Roboto", serif;
+    color: #1d1f22;
 }

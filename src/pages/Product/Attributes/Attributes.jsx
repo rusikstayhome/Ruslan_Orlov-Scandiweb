@@ -1,4 +1,3 @@
-import { assertDirective } from 'graphql';
 import React from 'react';
 
 import './Attributes.css';
@@ -8,16 +7,16 @@ class Attributes extends React.Component {
     super();
     this.state = {
       attributes: {
-        activeAttribute: null,
-        activeColorAttribute: null,
+        activeAttribute: {},
+        color: null,
       },
     };
   }
 
-  setActiveColorAttribute = (value) => {
+  setcolor = (value) => {
     this.setState((prevState) => ({
       attributes: {
-        activeColorAttribute: value,
+        color: value,
         activeAttribute: prevState.attributes.activeAttribute,
       },
     }));
@@ -26,45 +25,51 @@ class Attributes extends React.Component {
   setActiveAttribute = (key, value) => {
     this.setState((prevState) => ({
       attributes: {
-        activeColorAttribute: prevState.attributes.activeColorAttribute,
-        activeAttribute: value,
+        color: prevState.attributes.color,
+        activeAttribute: {
+          ...prevState.attributes.activeAttribute,
+          [key]: value,
+        },
       },
     }));
   };
 
   render() {
-    const obj = this.props.obj;
-    console.log(obj);
+    const attributes = this.props.obj;
+
     return (
-      <div key={obj.name}>
-        <h3>{obj.name}:</h3>
-        {/* {obj.filter()} */}
-        {/* {obj.name === 'Color'
-          ? obj
-              .filter((a) => a.name === 'Color')
-              .items.map((item) => (
-                <span
-                  key={item.displayValue}
-                  className={`product-attributes__color ${
-                    this.state.attributes.activeColorAttribute === item.displayValue
-                      ? 'product-attributes__color-active'
-                      : ''
-                  }`}
-                  style={{ backgroundColor: item.displayValue }}
-                  onClick={() => this.setActiveColorAttribute(item.displayValue)}></span>
-              ))
-          : obj.items.map((item) => (
-              <span
-                key={item.displayValue}
-                className={`product-attributes__all ${
-                  this.state.attributes.activeAttribute === item.displayValue
-                    ? 'product-attributes__all-active'
-                    : ''
-                }`}
-                onClick={() => this.setActiveAttribute(obj.name, item.displayValue)}>
-                {item.value}
-              </span>
-            ))} */}
+      <div>
+        {attributes.map((obj) => (
+          <div key={obj.name}>
+            <h3>{obj.name}:</h3>
+            {obj.name === 'Color'
+              ? obj.items.map((item) => (
+                  <span
+                    key={item.displayValue}
+                    className={`product-attributes__color ${
+                      this.state.attributes.color === item.displayValue
+                        ? 'product-attributes__color-active'
+                        : ''
+                    }`}
+                    style={{ backgroundColor: item.displayValue }}
+                    onClick={() => this.setcolor(item.displayValue)}></span>
+                ))
+              : obj.items.map((item) => {
+                  return (
+                    <span
+                      key={item.displayValue}
+                      className={`product-attributes__all ${
+                        this.state.attributes.activeAttribute[obj.name] === item.displayValue
+                          ? 'product-attributes__all-active'
+                          : ''
+                      }`}
+                      onClick={() => this.setActiveAttribute(obj.name, item.displayValue)}>
+                      {item.value}
+                    </span>
+                  );
+                })}
+          </div>
+        ))}
       </div>
     );
   }

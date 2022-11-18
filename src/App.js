@@ -13,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container" >
-        <Header />
+        <Header client={this.props.client} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<Product />} />

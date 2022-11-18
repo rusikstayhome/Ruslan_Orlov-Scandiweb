@@ -1,4 +1,5 @@
 import React from 'react';
+import { htmlToText } from 'html-to-text';
 
 import Attributes from './Attributes/Attributes';
 
@@ -23,13 +24,16 @@ class Product extends React.Component {
 
   render() {
     const id = window.location.href.split('/')[4];
+    const lable = window.localStorage.getItem('currency');
+    console.log(lable);
 
     return (
       <Query variables={{ id: id }} query={GET_ONE_PRODUCT}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading…</p>;
           if (error) return <p>Error :(</p>;
-          console.log(data.product.attributes);
+          const price = data.product.prices.filter((price) => price.currency.label === lable);
+          console.log(price[0].amount);
           return (
             <article className="product-page">
               <section>
@@ -58,10 +62,17 @@ class Product extends React.Component {
                   <h2>{data.product.name}</h2>
                 </div>
                 <div className="product-attributes">
-                  {data.product.attributes.map((obj) => (
-                    <Attributes obj={obj} />
-                  ))}
+                  <Attributes obj={data.product.attributes} />
                 </div>
+                <div className="product-price">
+                  <h3>Price:</h3>
+                  <h2>{`${price[0].currency.symbol}${price[0].amount}`}</h2>
+                </div>
+                <button className="product-addButton">ADD TO CART</button>
+                <div
+                  className="product-description"
+                  dangerouslySetInnerHTML={{ __html: data.product.description }}
+                />
               </section>
             </article>
           );

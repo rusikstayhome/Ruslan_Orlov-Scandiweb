@@ -59,7 +59,6 @@ class App extends React.Component {
               if (error) return <p>Error :(</p>;
               return data.category.products
                 .filter((obj) => (category === 'all' ? obj : obj.category === category))
-                .slice(0, 6)
                 .map(({ name, prices, inStock, gallery, id }) => (
                   <Link to={`/product/${id}`}>
                     <Card name={name} prices={prices} inStock={inStock} gallery={gallery} />

@@ -75,7 +75,11 @@ class Header extends React.Component {
             </li>
           </ul>
           <div className="currencies-overlay">
-            <CurrenciesOverlay show={this.state.showCurrenciesOverlay} />
+            <CurrenciesOverlay
+              show={this.state.showCurrenciesOverlay}
+              closeCurrenCiesOverlay={this.onClickShowCurrenciesOverlay}
+              client={this.props.client}
+            />
           </div>
         </header>
       </>
