@@ -31,14 +31,14 @@ class Card extends React.Component {
   render() {
     return (
       <div
-        className={`card ${this.props.inStock ? 'out-of-stock' : ''}`}
+        className={`card ${!this.props.inStock ? 'out-of-stock' : ''}`}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}>
         <div className="card-img">
           <img src={this.props.gallery[0]} alt={this.props.name} />
         </div>
         <div className={`cart-img ${!this.state.showCartImg ? 'hide' : ''}`}>
-          {!this.props.inStock ? <img src={cartImg} alt="cart-button" /> : ''}
+          {this.props.inStock ? <img src={cartImg} alt="cart-button" /> : ''}
         </div>
         <p>{this.props.name}</p>
         <p>

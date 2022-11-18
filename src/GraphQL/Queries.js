@@ -34,8 +34,26 @@ export const getCurrencies = gql`
 export const GET_ONE_PRODUCT = gql`
 query GET_ONE_PRODUCT($id: String!) {
     product(id: $id) {
-      name,
-      id
+        name,
+        id,
+          inStock,
+        gallery,
+        description,
+          attributes {
+          name,
+          type,
+          items {
+            displayValue,
+            value
+          }
+        }
+        prices {
+            currency {
+            label,
+            symbol
+            }
+        }
+        brand
     }
 }
 `
