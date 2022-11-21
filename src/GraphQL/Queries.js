@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { client } from "./client/client";
 
 export const getAllProducts = gql`
 query getAllProducts {
@@ -59,8 +60,8 @@ query GET_ONE_PRODUCT($id: String!) {
 }
 `
 
-export const GET_CURRENCY = gql`
-query getDarkMode {
+export const GET_CURRENT_CURRENCY = gql`
+query getCurrency {
   currency @client
 }
 `;

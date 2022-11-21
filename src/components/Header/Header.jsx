@@ -78,7 +78,6 @@ class Header extends React.Component {
             <CurrenciesOverlay
               show={this.state.showCurrenciesOverlay}
               closeCurrenCiesOverlay={this.onClickShowCurrenciesOverlay}
-              client={this.props.client}
             />
           </div>
         </header>

@@ -60,7 +60,7 @@ class App extends React.Component {
               return data.category.products
                 .filter((obj) => (category === 'all' ? obj : obj.category === category))
                 .map(({ name, prices, inStock, gallery, id }) => (
-                  <Link to={`/product/${id}`}>
+                  <Link to={inStock ? `/product/${id}` : '/'}>
                     <Card name={name} prices={prices} inStock={inStock} gallery={gallery} />
                   </Link>
                 ));
