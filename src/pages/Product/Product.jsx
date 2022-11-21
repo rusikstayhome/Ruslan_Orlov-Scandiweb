@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Attributes from './Attributes/Attributes';
+import Price from './Price/Price';
 
-import { client } from '../../GraphQL/client/client';
-import { GET_ONE_PRODUCT, GET_CURRENT_CURRENCY } from '../../GraphQL/Queries';
+import { GET_ONE_PRODUCT } from '../../GraphQL/Queries';
 import { Query } from '@apollo/client/react/components';
 
 import './Product.css';
@@ -13,7 +13,6 @@ class Product extends React.Component {
     super();
     this.state = {
       mainPicture: '',
-      currentCurrency: client.cache.data.data.ROOT_QUERY?.currency || 'USD',
     };
   }
 
@@ -24,19 +23,7 @@ class Product extends React.Component {
   };
 
   render() {
-    // client
-    //   .query({
-    //     query: GET_CURRENT_CURRENCY,
-    //   })
-    //   .then((res) =>
-    //     this.setState({
-    //       currentCurrency: res.data.currency || 'USD',
-    //     }),
-    //   );
-    console.log(client.cache.data.data.ROOT_QUERY?.currency);
     const id = window.location.href.split('/')[4];
-    const label = this.state.currentCurrency;
-    console.log(label);
 
     return (
       <Query variables={{ id: id }} query={GET_ONE_PRODUCT}>
@@ -44,7 +31,7 @@ class Product extends React.Component {
           if (loading) return <p>Loading…</p>;
           if (error) return <p>Error :(</p>;
 
-          const price = data.product.prices.filter((price) => price.currency.label === label);
+          const price = data.product.prices;
 
           return (
             <article className="product-page">
@@ -78,7 +65,9 @@ class Product extends React.Component {
                 </div>
                 <div className="product-price">
                   <h3>Price:</h3>
-                  <h2>{`${price[0].currency.symbol}${price[0].amount}`}</h2>
+                  <h2>
+                    <Price price={price} />
+                  </h2>
                 </div>
                 <button className="product-addButton">ADD TO CART</button>
                 <div

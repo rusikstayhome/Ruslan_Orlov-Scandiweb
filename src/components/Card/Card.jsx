@@ -1,6 +1,7 @@
 import React from 'react';
 
 import cartImg from './cart-img.svg';
+import Price from '../../pages/Product/Price/Price';
 
 import './Card.css';
 
@@ -42,7 +43,9 @@ class Card extends React.Component {
         </div>
         <p>{this.props.name}</p>
         <p>
-          <span>{`${this.props.prices[0].currency.symbol}${this.props.prices[0].amount}`}</span>
+          <span>
+            <Price price={this.props.prices} />
+          </span>
         </p>
       </div>
     );

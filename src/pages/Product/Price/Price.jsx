@@ -1,8 +1,27 @@
 import React from 'react';
 
+import { Query } from '@apollo/client/react/components';
+
+import { GET_CURRENT_CURRENCY } from '../../../GraphQL/Queries';
+
 class Price extends React.Component {
   render() {
-    return <div>Price</div>;
+    const { price } = this.props;
+    console.log(price);
+    return (
+      <Query query={GET_CURRENT_CURRENCY}>
+        {({ loading, error, data }) => {
+          if (loading) return <p>Loading…</p>;
+          if (error) return <p>Error :(</p>;
+
+          const currentPrice = data
+            ? price.filter((price) => price.currency.label === data.currency)
+            : price[0];
+
+          return <>{`${currentPrice[0].currency.symbol}${currentPrice[0].amount}`}</>;
+        }}
+      </Query>
+    );
   }
 }
 

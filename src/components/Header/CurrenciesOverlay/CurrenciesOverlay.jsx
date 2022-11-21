@@ -20,7 +20,6 @@ class CurrenciesOverlay extends React.Component {
   };
 
   render() {
-    console.log(client.cache.data.data.ROOT_QUERY?.currency);
     return (
       <>
         {this.props.show ? (
