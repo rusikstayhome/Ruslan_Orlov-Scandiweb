@@ -3,7 +3,9 @@ import React from 'react';
 import Attributes from './Attributes/Attributes';
 import Price from './Price/Price';
 
-import { GET_ONE_PRODUCT } from '../../GraphQL/Queries';
+import { GET_ONE_PRODUCT, GET_CURRENT_CART } from '../../GraphQL/Queries';
+import { client } from '../../GraphQL/client/client';
+
 import { Query } from '@apollo/client/react/components';
 
 import './Product.css';
@@ -13,6 +15,10 @@ class Product extends React.Component {
     super();
     this.state = {
       mainPicture: '',
+      attributes: {
+        activeAttribute: {},
+        color: null,
+      },
     };
   }
 
@@ -20,6 +26,45 @@ class Product extends React.Component {
     this.setState({
       mainPicture: img,
     });
+  };
+
+  setColor = (value) => {
+    this.setState((prevState) => ({
+      attributes: {
+        color: value,
+        activeAttribute: prevState.attributes.activeAttribute,
+      },
+    }));
+  };
+
+  setActiveAttribute = (key, value) => {
+    this.setState((prevState) => ({
+      attributes: {
+        color: prevState.attributes.color,
+        activeAttribute: {
+          ...prevState.attributes.activeAttribute,
+          [key]: value,
+        },
+      },
+    }));
+  };
+
+  addItemToCart = (id) => {
+    const cart = [{ productsIds: id, attributes: this.state.attributes }];
+
+    client.cache.writeQuery({
+      query: GET_CURRENT_CART,
+      data: {
+        cart,
+      },
+    });
+
+    // let productsIds = JSON.parse(window.localStorage.getItem('productsIds'));
+    // productsIds.push(id);
+    // window.localStorage.setItem('productsIds', JSON.stringify(productsIds));
+    // console.log(productsIds);
+
+    console.log(client.cache.data.data.ROOT_QUERY);
   };
 
   render() {
@@ -61,7 +106,12 @@ class Product extends React.Component {
                   <h2>{data.product.name}</h2>
                 </div>
                 <div className="product-attributes">
-                  <Attributes obj={data.product.attributes} />
+                  <Attributes
+                    obj={data.product.attributes}
+                    setColor={this.setColor}
+                    setActiveAttribute={this.setActiveAttribute}
+                    attributes={this.state.attributes}
+                  />
                 </div>
                 <div className="product-price">
                   <h3>Price:</h3>
@@ -69,7 +119,11 @@ class Product extends React.Component {
                     <Price price={price} />
                   </h2>
                 </div>
-                <button className="product-addButton">ADD TO CART</button>
+                <button
+                  className="product-addButton"
+                  onClick={() => this.addItemToCart(data.product.id)}>
+                  ADD TO CART
+                </button>
                 <div
                   className="product-description"
                   dangerouslySetInnerHTML={{ __html: data.product.description }}

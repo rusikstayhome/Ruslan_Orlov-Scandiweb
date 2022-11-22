@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import logo from './logo.svg';
 import cart from './empty-cart.svg';
 import './Header.css';
@@ -47,8 +49,8 @@ class Header extends React.Component {
                     <path
                       d="M1 3.5L4 0.5L7 3.5"
                       stroke="black"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </span>
@@ -63,15 +65,17 @@ class Header extends React.Component {
                     <path
                       d="M1 0.5L4 3.5L7 0.5"
                       stroke="black"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </span>
               )}
             </li>
             <li>
-              <img src={cart} alt="cart-iocn" />
+              <Link to="/cart">
+                <img src={cart} alt="cart-iocn" />
+              </Link>
             </li>
           </ul>
           <div className="currencies-overlay">

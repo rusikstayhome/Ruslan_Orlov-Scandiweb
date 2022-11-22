@@ -7,6 +7,7 @@ import { GET_CURRENT_CURRENCY } from '../../../GraphQL/Queries';
 class Price extends React.Component {
   render() {
     const { price } = this.props;
+    const localStorageCurrency = window.localStorage.getItem('currency');
 
     return (
       <Query query={GET_CURRENT_CURRENCY}>
@@ -16,7 +17,7 @@ class Price extends React.Component {
 
           const currentPrice = data
             ? price.filter((price) => price.currency.label === data.currency)
-            : price;
+            : price.filter((price) => price.currency.label === (localStorageCurrency || 'USD'));
 
           return <>{`${currentPrice[0].currency.symbol}${currentPrice[0].amount}`}</>;
         }}
