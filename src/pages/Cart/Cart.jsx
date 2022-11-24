@@ -15,8 +15,6 @@ class Cart extends React.Component {
             if (loading) return <p>Loading…</p>;
             if (error) return <p>Error :(</p>;
             const { cartItems } = data;
-            console.log(cartItems);
-
             return (
               <div>
                 {data && cartItems.length === 0 ? (
@@ -25,7 +23,12 @@ class Cart extends React.Component {
                   <ul>
                     {data &&
                       cartItems.map((item, i) => (
-                        <CartItem key={i} id={item.productId} attributes={item.attributes} />
+                        <CartItem
+                          key={i}
+                          id={item.productId}
+                          attributes={item.attributes}
+                          index={i}
+                        />
                       ))}
                   </ul>
                 )}

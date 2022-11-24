@@ -3,7 +3,7 @@ import React from 'react';
 import Attributes from './Attributes/Attributes';
 import Price from './Price/Price';
 
-import { GET_ONE_PRODUCT, GET_CURRENT_CART } from '../../GraphQL/Queries';
+import { GET_ONE_PRODUCT } from '../../GraphQL/Queries';
 import { cartItemsVar } from '../../GraphQL/client/cache';
 
 import { Query } from '@apollo/client/react/components';
@@ -52,7 +52,6 @@ class Product extends React.Component {
   addItemToCart = (id) => {
     const cart = [{ productId: id, attributes: this.state.attributes }];
     cartItemsVar([...cartItemsVar(), ...cart]);
-    console.log(cartItemsVar());
   };
 
   render() {
