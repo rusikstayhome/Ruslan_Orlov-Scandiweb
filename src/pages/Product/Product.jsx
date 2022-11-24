@@ -4,7 +4,7 @@ import Attributes from './Attributes/Attributes';
 import Price from './Price/Price';
 
 import { GET_ONE_PRODUCT, GET_CURRENT_CART } from '../../GraphQL/Queries';
-import { client } from '../../GraphQL/client/client';
+import { cartItemsVar } from '../../GraphQL/client/cache';
 
 import { Query } from '@apollo/client/react/components';
 
@@ -50,21 +50,9 @@ class Product extends React.Component {
   };
 
   addItemToCart = (id) => {
-    const cart = [{ productsIds: id, attributes: this.state.attributes }];
-
-    client.cache.writeQuery({
-      query: GET_CURRENT_CART,
-      data: {
-        cart,
-      },
-    });
-
-    // let productsIds = JSON.parse(window.localStorage.getItem('productsIds'));
-    // productsIds.push(id);
-    // window.localStorage.setItem('productsIds', JSON.stringify(productsIds));
-    // console.log(productsIds);
-
-    console.log(client.cache.data.data.ROOT_QUERY);
+    const cart = [{ productId: id, attributes: this.state.attributes }];
+    cartItemsVar([...cartItemsVar(), ...cart]);
+    console.log(cartItemsVar());
   };
 
   render() {

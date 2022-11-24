@@ -68,8 +68,7 @@ query getCurrency {
 
 export const GET_CURRENT_CART = gql`
 query getCart {
-    productsIds @client
-    attributes @client
+    cartItems @client
 }
 `;
 

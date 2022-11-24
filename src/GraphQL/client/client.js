@@ -1,5 +1,6 @@
-import { ApolloClient, HttpLink, from, InMemoryCache, } from '@apollo/client';
+import { ApolloClient, HttpLink, from, } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+import { CustomInMemoryCache } from './cache';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors)
@@ -12,13 +13,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-
 const httpLink = new HttpLink({
     uri: "http://localhost:4000"
 });
 
-
 export const client = new ApolloClient({
     link: from([errorLink, httpLink]),
-    cache: new InMemoryCache()
+    cache: CustomInMemoryCache
 });
