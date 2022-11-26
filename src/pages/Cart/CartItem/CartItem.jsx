@@ -1,6 +1,7 @@
 import React from 'react';
 
-import CartImg from './CartImg/CartImgSection';
+import CartImgSection from './CartImg/CartImgSection';
+import CartSummary from './CartSummary/CartSummary';
 import Price from '../../Product/Price/Price';
 import Attributes from '../../Product/Attributes/Attributes';
 
@@ -9,7 +10,6 @@ import { GET_ONE_PRODUCT } from '../../../GraphQL/Queries';
 import { cartItemsVar } from '../../../GraphQL/client/cache';
 
 import './CartItem.css';
-import CartImgSection from './CartImg/CartImgSection';
 
 class CartItem extends React.Component {
   constructor() {
@@ -92,6 +92,7 @@ class CartItem extends React.Component {
       });
     }
   };
+
   render() {
     return (
       <Query variables={{ id: this.props.id }} query={GET_ONE_PRODUCT}>
@@ -131,6 +132,7 @@ class CartItem extends React.Component {
                   />
                 </section>
               </article>
+              <CartSummary />
             </>
           );
         }}

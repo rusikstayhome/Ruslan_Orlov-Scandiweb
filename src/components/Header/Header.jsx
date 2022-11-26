@@ -2,18 +2,17 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import CurrenciesOverlay from './CurrenciesOverlay/CurrenciesOverlay';
+import CartItemsQuantity from './CartItemsQuantity/CartItemsQuantity';
+
 import logo from './logo.svg';
 import cart from './empty-cart.svg';
 import './Header.css';
-import CurrenciesOverlay from './CurrenciesOverlay/CurrenciesOverlay';
 
 class Header extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showCurrenciesOverlay: false,
-    };
-  }
+  state = {
+    showCurrenciesOverlay: false,
+  };
 
   onClickShowCurrenciesOverlay = () => {
     this.setState({
@@ -72,9 +71,10 @@ class Header extends React.Component {
                 </span>
               )}
             </li>
-            <li>
+            <li className="cart-quantity__wrapper">
               <Link to="/cart">
                 <img src={cart} alt="cart-iocn" />
+                <CartItemsQuantity />
               </Link>
             </li>
           </ul>

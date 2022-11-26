@@ -3,7 +3,6 @@ import React from 'react';
 import Card from '../../components/Card/Card';
 
 import { getAllProducts } from '../../GraphQL/Queries';
-import { Link } from 'react-router-dom';
 import { Query } from '@apollo/client/react/components';
 import './Home.css';
 
@@ -60,9 +59,7 @@ class App extends React.Component {
               return data.category.products
                 .filter((obj) => (category === 'all' ? obj : obj.category === category))
                 .map(({ name, prices, inStock, gallery, id }) => (
-                  <Link to={inStock ? `/product/${id}` : '/'}>
-                    <Card name={name} prices={prices} inStock={inStock} gallery={gallery} />
-                  </Link>
+                  <Card name={name} prices={prices} inStock={inStock} gallery={gallery} id={id} />
                 ));
             }}
           </Query>

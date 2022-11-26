@@ -16,7 +16,7 @@ class Attributes extends React.Component {
                   <span
                     key={item.displayValue}
                     className={`product-attributes__color ${
-                      this.props.attributes.color === item.displayValue
+                      this.props.attributes?.color === item.displayValue
                         ? 'product-attributes__color-active'
                         : ''
                     }`}
@@ -28,7 +28,7 @@ class Attributes extends React.Component {
                     <span
                       key={item.displayValue}
                       className={`product-attributes__all ${
-                        this.props.attributes.activeAttribute[obj.name] === item.displayValue
+                        this.props.attributes?.activeAttribute[obj.name] === item.displayValue
                           ? 'product-attributes__all-active'
                           : ''
                       }`}
