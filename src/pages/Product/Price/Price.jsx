@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { Query } from '@apollo/client/react/components';
-
 import { GET_CURRENT_CURRENCY } from '../../../GraphQL/Queries';
 
 class Price extends React.Component {
   render() {
     const { price } = this.props;
+    const { quantity } = this.props;
+
     const localStorageCurrency = window.localStorage.getItem('currency');
 
     return (
@@ -19,7 +20,10 @@ class Price extends React.Component {
             ? price.filter((price) => price.currency.label === data.currency)
             : price.filter((price) => price.currency.label === (localStorageCurrency || 'USD'));
 
-          return <>{`${currentPrice[0].currency.symbol}${currentPrice[0].amount}`}</>;
+          const totalPrice =
+            quantity > 1 ? (currentPrice[0].amount * quantity).toFixed(2) : currentPrice[0].amount;
+
+          return <>{`${currentPrice[0].currency.symbol}${totalPrice}`}</>;
         }}
       </Query>
     );

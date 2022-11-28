@@ -1,7 +1,6 @@
 import React from 'react';
 
 import CartImgSection from './CartImg/CartImgSection';
-import CartSummary from './CartSummary/CartSummary';
 import Price from '../../Product/Price/Price';
 import Attributes from '../../Product/Attributes/Attributes';
 
@@ -27,6 +26,7 @@ class CartItem extends React.Component {
   componentDidMount() {
     this.setState({
       attributes: this.props.attributes,
+      quantity: this.props.quantity,
     });
   }
 
@@ -80,6 +80,13 @@ class CartItem extends React.Component {
       this.setState({
         quantity: this.state.quantity + 1,
       });
+      const quantity = this.state.quantity;
+      let newCartItem = { ...cartItemsVar()[this.props.index] };
+      newCartItem.quantity = quantity + 1;
+      const cartItems = cartItemsVar();
+      cartItems.splice(this.props.index, 1, newCartItem);
+      cartItemsVar([...cartItems]);
+      console.log(cartItemsVar());
     } else {
       if (this.state.quantity <= 1) {
         const cartItems = cartItemsVar();
@@ -90,10 +97,18 @@ class CartItem extends React.Component {
       this.setState({
         quantity: this.state.quantity - 1,
       });
+      const quantity = this.state.quantity;
+      let newCartItem = { ...cartItemsVar()[this.props.index] };
+      newCartItem.quantity = quantity - 1;
+      const cartItems = cartItemsVar();
+      cartItems.splice(this.props.index, 1, newCartItem);
+      cartItemsVar([...cartItems]);
+      console.log(cartItemsVar());
     }
   };
 
   render() {
+    const { quantity } = this.state;
     return (
       <Query variables={{ id: this.props.id }} query={GET_ONE_PRODUCT}>
         {({ loading, error, data }) => {
@@ -110,7 +125,7 @@ class CartItem extends React.Component {
                   </div>
                   <div className="product-price">
                     <h2>
-                      <Price price={price} />
+                      <Price price={price} quantity={quantity} />
                     </h2>
                   </div>
                   <div className="product-attributes">
@@ -132,7 +147,6 @@ class CartItem extends React.Component {
                   />
                 </section>
               </article>
-              <CartSummary />
             </>
           );
         }}

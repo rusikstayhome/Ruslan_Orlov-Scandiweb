@@ -11,6 +11,10 @@ import './Card.css';
 class Card extends React.Component {
   state = {
     showCartImg: false,
+    attributes: {
+      activeAttribute: {},
+      color: null,
+    },
   };
 
   onMouseEnter = () => {
@@ -30,7 +34,8 @@ class Card extends React.Component {
   };
 
   addItemToCart = (id) => {
-    const cart = [{ productId: id }];
+    const price = this.props.prices;
+    const cart = [{ productId: id, attributes: this.state.attributes, price, quantity: 1 }];
     cartItemsVar([...cartItemsVar(), ...cart]);
   };
 

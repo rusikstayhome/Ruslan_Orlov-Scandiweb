@@ -49,8 +49,8 @@ class Product extends React.Component {
     }));
   };
 
-  addItemToCart = (id) => {
-    const cart = [{ productId: id, attributes: this.state.attributes }];
+  addItemToCart = (id, price) => {
+    const cart = [{ productId: id, attributes: this.state.attributes, price, quantity: 1 }];
     cartItemsVar([...cartItemsVar(), ...cart]);
   };
 
@@ -108,7 +108,7 @@ class Product extends React.Component {
                 </div>
                 <button
                   className="product-addButton"
-                  onClick={() => this.addItemToCart(data.product.id)}>
+                  onClick={() => this.addItemToCart(data.product.id, price)}>
                   ADD TO CART
                 </button>
                 <div

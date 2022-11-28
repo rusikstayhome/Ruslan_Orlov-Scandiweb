@@ -1,8 +1,10 @@
 import React from 'react';
 
 import CartItem from './CartItem/CartItem';
+import CartSummary from './CartItem/CartSummary/CartSummary';
 
 import { GET_CURRENT_CART } from '../../GraphQL/Queries';
+import { cartItemsVar } from '../../GraphQL/client/cache';
 import { Query } from '@apollo/client/react/components';
 
 class Cart extends React.Component {
@@ -26,12 +28,14 @@ class Cart extends React.Component {
                         <CartItem
                           key={i}
                           id={item.productId}
+                          quantity={item.quantity}
                           attributes={item.attributes}
                           index={i}
                         />
                       ))}
                   </ul>
                 )}
+                <CartSummary />
               </div>
             );
           }}

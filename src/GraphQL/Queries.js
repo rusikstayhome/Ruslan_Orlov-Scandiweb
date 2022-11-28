@@ -72,3 +72,9 @@ query getCart {
 }
 `;
 
+export const GET_CURRENT_SUMMARY = gql`
+query getSummary {
+    summary @client
+}
+`;
+
