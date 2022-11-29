@@ -63,6 +63,12 @@ header {
     cursor: pointer;
 }
 
+.header-nav li:first-child {
+    color: #5ece7b;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #5ece7b;
+}
+
 .currencies-overlay {
     position: absolute;
     right: -23px;

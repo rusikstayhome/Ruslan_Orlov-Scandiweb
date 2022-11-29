@@ -4,7 +4,6 @@ import CartItem from './CartItem/CartItem';
 import CartSummary from './CartItem/CartSummary/CartSummary';
 
 import { GET_CURRENT_CART } from '../../GraphQL/Queries';
-import { cartItemsVar } from '../../GraphQL/client/cache';
 import { Query } from '@apollo/client/react/components';
 
 class Cart extends React.Component {

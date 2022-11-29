@@ -86,7 +86,6 @@ class CartItem extends React.Component {
       const cartItems = cartItemsVar();
       cartItems.splice(this.props.index, 1, newCartItem);
       cartItemsVar([...cartItems]);
-      console.log(cartItemsVar());
     } else {
       if (this.state.quantity <= 1) {
         const cartItems = cartItemsVar();
