@@ -1,10 +1,8 @@
 import React from 'react';
 
-import Price from '../../../Product/Price/TotalPrice';
-
 import { Query } from '@apollo/client/react/components';
-import { cartItemsVar } from '../../../../GraphQL/client/cache';
-import { GET_CURRENT_CURRENCY } from '../../../../GraphQL/Queries';
+import { cartItemsVar } from '../../../GraphQL/client/cache';
+import { GET_CURRENT_CURRENCY } from '../../../GraphQL/Queries';
 
 import './CartSummary.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import CartItem from './CartItem/CartItem';
-import CartSummary from './CartItem/CartSummary/CartSummary';
+import CartItem from '../../components/CartItem/CartItem';
+import CartSummary from '../../components/CartItem/CartSummary/CartSummary';
 
 import { GET_CURRENT_CART } from '../../GraphQL/Queries';
 import { Query } from '@apollo/client/react/components';

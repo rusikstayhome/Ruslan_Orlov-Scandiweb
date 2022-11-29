@@ -1,12 +1,12 @@
 import React from 'react';
 
 import CartImgSection from './CartImg/CartImgSection';
-import Price from '../../Product/Price/Price';
-import Attributes from '../../Product/Attributes/Attributes';
+import Price from '../Price/Price';
+import Attributes from '../Attributes/Attributes';
 
 import { Query } from '@apollo/client/react/components';
-import { GET_ONE_PRODUCT } from '../../../GraphQL/Queries';
-import { cartItemsVar } from '../../../GraphQL/client/cache';
+import { GET_ONE_PRODUCT } from '../../GraphQL/Queries';
+import { cartItemsVar } from '../../GraphQL/client/cache';
 
 import './CartItem.css';
 

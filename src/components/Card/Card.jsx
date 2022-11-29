@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import cartImg from './cart-img.svg';
-import Price from '../../pages/Product/Price/Price';
+import Price from '../Price/Price';
 
 import { cartItemsVar } from '../../GraphQL/client/cache';
 

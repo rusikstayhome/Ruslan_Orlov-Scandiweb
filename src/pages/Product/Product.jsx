@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Attributes from './Attributes/Attributes';
-import Price from './Price/Price';
+import Attributes from '../../components/Attributes/Attributes';
+import Price from '../../components/Price/Price';
 
 import { GET_ONE_PRODUCT } from '../../GraphQL/Queries';
 import { cartItemsVar } from '../../GraphQL/client/cache';

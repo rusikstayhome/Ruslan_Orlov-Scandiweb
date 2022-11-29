@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Query } from '@apollo/client/react/components';
-import { GET_CURRENT_CURRENCY } from '../../../GraphQL/Queries';
+import { GET_CURRENT_CURRENCY } from '../../GraphQL/Queries';
 
 class Price extends React.Component {
   render() {
