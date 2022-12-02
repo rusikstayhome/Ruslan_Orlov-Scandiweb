@@ -108,6 +108,8 @@ class CartItem extends React.Component {
 
   render() {
     const { quantity } = this.state;
+    const { overlay } = this.props;
+
     return (
       <Query variables={{ id: this.props.id }} query={GET_ONE_PRODUCT}>
         {({ loading, error, data }) => {
@@ -116,7 +118,7 @@ class CartItem extends React.Component {
           const price = data.product.prices;
           return (
             <>
-              <article className="cart-item">
+              <article className={`cart-item ${overlay ? 'cart-item__overlay' : ''}`}>
                 <section>
                   <div className="desc-header">
                     <h3>{data.product.brand}</h3>

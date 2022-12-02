@@ -73,6 +73,7 @@ header {
     position: absolute;
     right: -23px;
     top: 55px;
+    z-index: 99999;
 }
 
 .cart-quantity__wrapper {

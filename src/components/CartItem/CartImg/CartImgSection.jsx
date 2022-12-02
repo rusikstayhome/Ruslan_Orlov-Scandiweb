@@ -52,12 +52,7 @@ class CartImg extends React.Component {
         </div>
         <div className="cart-img__quantity">
           <div className="cart-img__quantity-plus" onClick={() => this.props.setQuantity('plus')}>
-            <svg
-              width="45"
-              height="45"
-              viewBox="0 0 45 45"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clipPath="url(#clip0_1_1007)">
                 <path
                   d="M22.5 14.9999V29.9999"
@@ -81,12 +76,7 @@ class CartImg extends React.Component {
             </svg>
           </div>
           <div className="cart-img__quantity-down" onClick={() => this.props.setQuantity('minus')}>
-            <svg
-              width="45"
-              height="45"
-              viewBox="0 0 45 45"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M14.9999 22.5H29.9999"
                 stroke="black"

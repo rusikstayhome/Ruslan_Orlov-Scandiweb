@@ -48,7 +48,22 @@ class CartSummary extends React.Component {
           const totalQuantity = quantity.length > 0 && quantity.reduce((sum, el) => sum + el);
 
           return (
-            totalPrices.length > 0 && (
+            totalPrices.length > 0 &&
+            (this.props.overlay ? (
+              <section className="cart-summary__overlay">
+                <div className="cart-summary__overlay__prop">
+                  <h2>Total:</h2>
+                  <h2>
+                    {symbol[0]}
+                    {summary}
+                  </h2>
+                </div>
+                <div className="cart-summary__overlay__buttons">
+                  <button>VIEW BAG</button>
+                  <button>CHECK OUT</button>
+                </div>
+              </section>
+            ) : (
               <section className="cart-summary">
                 <div className="cart-summary__wrapper">
                   <div className="cart-summary__prop">
@@ -70,7 +85,7 @@ class CartSummary extends React.Component {
                 </div>
                 <button>ORDER</button>
               </section>
-            )
+            ))
           );
         }}
       </Query>

@@ -1,0 +1,17 @@
+.cart-overlay {
+    position: absolute;
+    right: 0;
+    top: 80px;
+    min-height: 350%;
+    z-index: 999;
+    width: 100vw;
+    height: 100%;
+    background-color: hsla(247, 13%, 25%, 0.22);
+}
+
+.cart-overlay__content {
+    position: absolute;
+    background-color: #fff;
+    right: 72px;
+    top: 0px;
+}

@@ -15,11 +15,13 @@ class App extends React.Component {
     return (
       <div className="container" >
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
+        <div className="content-wrapper">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
       </div>
     )
   }

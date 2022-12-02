@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import CurrenciesOverlay from './CurrenciesOverlay/CurrenciesOverlay';
 import CartItemsQuantity from './CartItemsQuantity/CartItemsQuantity';
+import CartOverlay from '../CartOverlay/CartOverlay';
 
 import logo from './logo.svg';
 import cart from './empty-cart.svg';
@@ -12,12 +13,29 @@ import './Header.css';
 class Header extends React.Component {
   state = {
     showCurrenciesOverlay: false,
+    showCartOverLay: false,
   };
 
   onClickShowCurrenciesOverlay = () => {
     this.setState({
       showCurrenciesOverlay: !this.state.showCurrenciesOverlay,
     });
+  };
+
+  onMouseEnter = () => {
+    setTimeout(() => {
+      this.setState({
+        showCartOverLay: true,
+      });
+    }, 20);
+  };
+
+  onMouseLeave = () => {
+    setTimeout(() => {
+      this.setState({
+        showCartOverLay: false,
+      });
+    }, 20);
   };
 
   render() {
@@ -71,9 +89,9 @@ class Header extends React.Component {
                 </span>
               )}
             </li>
-            <li className="cart-quantity__wrapper">
+            <li className="cart-quantity__wrapper" onMouseEnter={this.onMouseEnter}>
               <Link to="/cart">
-                <img src={cart} alt="cart-iocn" />
+                <img src={cart} alt="cart-iocn" onClick={this.onMouseLeave} />
                 <CartItemsQuantity />
               </Link>
             </li>
@@ -85,6 +103,7 @@ class Header extends React.Component {
             />
           </div>
         </header>
+        {this.state.showCartOverLay && <CartOverlay onMouseLeave={this.onMouseLeave} />}
       </>
     );
   }
