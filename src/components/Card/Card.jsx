@@ -45,14 +45,15 @@ class Card extends React.Component {
         <div
           className={`card ${!this.props.inStock ? 'out-of-stock' : ''}`}
           onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
-          onClick={() => this.addItemToCart(this.props.id)}>
+          onMouseLeave={this.onMouseLeave}>
           <Link to={this.props.inStock ? `/product/${this.props.id}` : '/'}>
             <div className="card-img">
               <img src={this.props.gallery[0]} alt={this.props.name} />
             </div>
           </Link>
-          <div className={`cart-img ${!this.state.showCartImg ? 'hide' : ''}`}>
+          <div
+            onClick={() => this.addItemToCart(this.props.id)}
+            className={`cart-img ${!this.state.showCartImg ? 'hide' : ''}`}>
             {this.props.inStock ? <img src={cartImg} alt="cart-button" /> : ''}
           </div>
           <Link to={this.props.inStock ? `/product/${this.props.id}` : '/'}>
