@@ -74,14 +74,29 @@
     cursor: pointer;
 }
 
-.cart-summary__overlay__buttons button:first-child {
+.view-bag {
     background-color: #fff;
     border: 1px solid black;
+    transition: all 0.2s ease-in-out;
 }
 
-.cart-summary__overlay__buttons button:last-child {
-    padding: 13px 37px;
+.view-bag:hover {
+    background-color: black;
+    color: white;
+}
+
+.check-out {
+    padding: 12px 36px;
+    border: 1px solid #5ece7b;
     border: none;
     color: #fff;
     background-color: #5ece7b;
+    transition: all 0.2s ease-in-out;
+}
+
+.check-out:hover {
+    padding: 12px 36px;
+    color: #5ece7b;
+    background-color: #fff;
+    border: 1px solid #5ece7b;
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { Query } from '@apollo/client/react/components';
 import { cartItemsVar } from '../../../GraphQL/client/cache';
 import { GET_CURRENT_CURRENCY } from '../../../GraphQL/Queries';
@@ -59,8 +61,10 @@ class CartSummary extends React.Component {
                   </h2>
                 </div>
                 <div className="cart-summary__overlay__buttons">
-                  <button>VIEW BAG</button>
-                  <button>CHECK OUT</button>
+                  <Link to="/cart">
+                    <button className="view-bag">VIEW BAG</button>
+                  </Link>
+                  <button className="check-out">CHECK OUT</button>
                 </div>
               </section>
             ) : (
