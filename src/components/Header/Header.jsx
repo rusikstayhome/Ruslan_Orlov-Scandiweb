@@ -50,7 +50,9 @@ class Header extends React.Component {
             </ul>
           </nav>
           <div className="logo">
-            <img src={logo} alt="logo" />
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
           </div>
           <ul className="header-actions">
             <li onClick={this.onClickShowCurrenciesOverlay}>
