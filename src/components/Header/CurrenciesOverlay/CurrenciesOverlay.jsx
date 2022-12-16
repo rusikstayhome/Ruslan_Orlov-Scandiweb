@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { client } from '../../../GraphQL/client/client';
-import { getCurrencies } from '../../../GraphQL/Queries';
+import { GET_CURRENCIES } from '../../../GraphQL/Queries';
 import { GET_CURRENT_CURRENCY } from '../../../GraphQL/Queries';
 import { Query } from '@apollo/client/react/components';
 
@@ -24,7 +24,7 @@ class CurrenciesOverlay extends React.Component {
       <>
         {this.props.show ? (
           <ul className="currencies">
-            <Query query={getCurrencies}>
+            <Query query={GET_CURRENCIES}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading…</p>;
                 if (error) return <p>Error :(</p>;

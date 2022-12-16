@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
-import { client } from "./client/client";
 
-export const getAllProducts = gql`
+export const GET_ALL_PRODUCTS = gql`
 query getAllProducts {
     category {
     name
@@ -23,7 +22,7 @@ query getAllProducts {
 }
 `
 
-export const getCurrencies = gql`
+export const GET_CURRENCIES = gql`
     query getCurrencies {
         currencies {
         label,

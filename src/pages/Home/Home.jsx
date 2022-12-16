@@ -2,7 +2,7 @@ import React from 'react';
 
 import Card from '../../components/Card/Card';
 
-import { getAllProducts } from '../../GraphQL/Queries';
+import { GET_ALL_PRODUCTS } from '../../GraphQL/Queries';
 import { Query } from '@apollo/client/react/components';
 import './Home.css';
 
@@ -52,7 +52,7 @@ class App extends React.Component {
           </div>
         </div>
         <div className="cards-container">
-          <Query query={getAllProducts}>
+          <Query query={GET_ALL_PRODUCTS}>
             {({ loading, error, data }) => {
               if (loading) return <p>Loading…</p>;
               if (error) return <p>Error :(</p>;
