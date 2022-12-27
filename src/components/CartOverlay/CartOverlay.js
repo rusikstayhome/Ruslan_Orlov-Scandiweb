@@ -3,7 +3,7 @@ import React from 'react'
 import CartItem from '../CartItem/CartItem';
 import CartSummary from '../CartItem/CartSummary/CartSummary';
 
-import { GET_CURRENT_CART, GET_CURRENT_CURRENCY } from '../../GraphQL/Queries';
+import { GET_CURRENT_CART } from '../../GraphQL/Queries';
 import { Query } from '@apollo/client/react/components';
 import { cartItemsVar } from '../../GraphQL/client/cache';
 
@@ -33,7 +33,6 @@ class CartOverlay extends React.Component {
                       <ul>
                         {data &&
                           cartItems.map((item, i) => (
-
                             <CartItem
                               key={i}
                               id={item.productId}
@@ -42,7 +41,6 @@ class CartOverlay extends React.Component {
                               index={i}
                               overlay={true}
                             />
-
                           ))}
                       </ul>
                     </>

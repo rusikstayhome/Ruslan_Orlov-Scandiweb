@@ -59,7 +59,14 @@ class App extends React.Component {
               return data.category.products
                 .filter((obj) => (category === 'all' ? obj : obj.category === category))
                 .map(({ name, prices, inStock, gallery, id }) => (
-                  <Card name={name} prices={prices} inStock={inStock} gallery={gallery} id={id} />
+                  <Card
+                    key={id}
+                    name={name}
+                    prices={prices}
+                    inStock={inStock}
+                    gallery={gallery}
+                    id={id}
+                  />
                 ));
             }}
           </Query>
